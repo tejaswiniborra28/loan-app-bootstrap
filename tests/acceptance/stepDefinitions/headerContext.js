@@ -5,15 +5,15 @@ const { expect } = require("@playwright/test")
 
 const url = 'http://localhost:3000/loan-application/loanApp'
 
-//Scenario: update
+//User clicking on update Link
 Given('a user has navigated to the Header to naviagte to update component', async function () {
    await page.goto(url);
-   const updatetext = page.getByText("Update");
+   const updatetext = page.getByTestId("update");
    expect(updatetext).toBeVisible();
 })
 
 When('the user clicks on update',async function () {
-   const update = page.getByText("Update");
+   const update = page.getByTestId("update");
    await update.click();
 })
 
@@ -23,7 +23,7 @@ Then('user should be directed to update page',async function () {
 
 
 
-//   Scenario: loan
+//  User clicking on loan Link
 Given('a user has navigated to the Header to naviagte to loan component', async function () {
    await page.goto(url);
    const loantext = page.getByText("Apply Loan");
@@ -40,7 +40,7 @@ Then('user should be directed to loan page',async function () {
 })
 
 
-// Scenario: loan details
+//User clicking on loan details Link
 Given('a user has navigated to the Header to naviagte to Loan details component', async function () {
    await page.goto(url);
    const loandetails = page.getByText("Loan Details");
@@ -57,7 +57,7 @@ Then('user should be directed to Loan details component',async function () {
 })
 
 
-// Scenario: logout button
+//  User clicking on logout button
 Given('a user has navigated to the Header to logout', async function () {
    await page.goto(url);
    const signOutButton = page.getByText("Sign out");

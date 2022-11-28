@@ -8,8 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 afterEach(cleanup)
 
 
-test(" test for validation of input values", async () => {
-
+test("test case for Registration form valid input values", async () => {
     const mockfun = jest.fn()
     const { getByTestId } = render(<Provider store={store}><BrowserRouter><RegisterComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
     await act(async () => {
@@ -40,13 +39,11 @@ test(" test for validation of input values", async () => {
     expect(getByTestId("state")).toBeInTheDocument();
     expect(getByTestId("city")).toBeInTheDocument();
 
-
-
 })
 
 
 
-test(" test for validation of input values null", async () => {
+test(" test case for validation when input values are  null", async () => {
 
     const mockfun = jest.fn()
     const { getByTestId } = render(<Provider store={store}><BrowserRouter><RegisterComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
@@ -54,10 +51,9 @@ test(" test for validation of input values null", async () => {
     await act(async () => {
         fireEvent.click(getByTestId("btn-register"));
     })
-   // expect(mockfun).toHaveBeenCalled(0);
 })
 
-test(" test for error validation of input values", async () => {
+test(" test case for error validation of input values", async () => {
 
     const mockfun = jest.fn()
     const { getByTestId } = render(<Provider store={store}><BrowserRouter><RegisterComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
@@ -77,5 +73,4 @@ test(" test for error validation of input values", async () => {
     await act(async () => {
         fireEvent.click(getByTestId("btn-register"));
     })
-   //  expect(mockfun).toHaveBeenCalled(0);
 })

@@ -5,7 +5,7 @@ const { expect } = require("@playwright/test")
 
 const url = 'http://localhost:3000/loan-application'
 
-// Scenario: valid inputs
+//User should not be able to login without registering
 Given('a user has navigated to the Login page without registering', async function () {
    await page.goto(url)
    const emailInput = page.getByTestId("email-input");
@@ -23,7 +23,7 @@ Then('message {string} should be displayed on the webUI',async function (item) {
 })
 
 
-//  Scenario: invalid inputs
+//   User should not be able to login when provides invalid inputs
 Given('a user has navigated to the Login page', async function () {
     await page.goto(url)
     const passwordInput = page.getByTestId("password-test");
@@ -41,7 +41,7 @@ Given('a user has navigated to the Login page', async function () {
  })
 
 
-// Scenario: clicking on Register Link
+//User clicking on Register Link
 Given('a user has navigated to the Login page to navigate to register page', async function () {
     await page.goto(url)
     const getRegister = page.getByText("Register here");

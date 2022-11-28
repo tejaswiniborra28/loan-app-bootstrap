@@ -1,35 +1,40 @@
 import React from "react";
-import { useNavigate,Link } from "react-router-dom";
-import {  useDispatch } from 'react-redux';
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import { logout } from "../redux/userActions";
 
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+
 export default function Header() {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const logoutFunc=(e)=>{
-       e.preventDefault();
-      dispatch(logout())
-      navigate("/login" )
-    }
-    return (
-        <div className="header">
-            <div className="header-logo">
-            <div className="logo" data-testid="loan-details" >
-              <Link to="/loandetails">Loan Details</Link>  
-            </div>
-            <div className="logo" data-testid="apply-loan" onClick={()=> navigate("/loanApp")}>
-              <Link to="/loanApp">  Apply Loan</Link>
-            </div>
-            <div className="logo" data-testid="update" onClick={()=> navigate("/update")}>
-              <Link to="/update">Update</Link>
-            </div>
-          
-            </div>
-            <div className="logo">
-                Loan Application
-            </div>
-            <div className="btn" data-testid="sign-out"><Link onClick={logoutFunc}>Sign out</Link></div>
-           
-        </div>
-    )
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const logoutFunc = (e) => {
+    e.preventDefault();
+    dispatch(logout())
+    navigate("/login")
+  }
+
+  return (
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand>Loan Application</Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link data-testid="apply-loan" > <Link className="link-style" to="/loanApp">  Apply Loan</Link></Nav.Link>
+            <Nav.Link data-testid="loan-details"><Link className="link-style" to="/loandetails">Loan Details</Link>  </Nav.Link>
+
+          </Nav>
+          <Nav>
+            <Nav.Link data-testid="update"><Link className="link-style" to="/update">Update</Link></Nav.Link>
+            <Nav.Link eventKey={2} data-testid="sign-out">
+              <Link className="link-style" onClick={logoutFunc}>Sign out</Link>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }

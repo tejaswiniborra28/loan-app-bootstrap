@@ -34,7 +34,7 @@ export const logout=()=>{
     }
 }
 
-export const updatePassword=(obj)=>{
+export const updateAccountDetails=(obj)=>{
     console.log(obj,"reducer")
     return {
         type: UPDATE,

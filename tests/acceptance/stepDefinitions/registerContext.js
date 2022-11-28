@@ -5,7 +5,7 @@ const { expect } = require("@playwright/test")
 
 const url = 'http://localhost:3000/loan-application/register'
 
-// Scenario: valid inputs
+//  User should be registered successfully with valid inputs
 Given('a user has navigated to the Register page', async function () {
    await page.goto(url);
 
@@ -50,7 +50,7 @@ Then('message {string} should be displayed on the register page',async function 
 })
 
 
-//  Scenario: invalid inputs
+//   User should not be able to register with invalid inputs
 Given('a user has navigated to the Registration page to register', async function () {
     await page.goto(url)
     const regpanInput = page.getByTestId("reg-pan");
@@ -68,7 +68,7 @@ Given('a user has navigated to the Registration page to register', async functio
  })
 
 
-// Scenario: clicking on Register Link
+// User clicking on login Link
 Given('a user has navigated to the Register page to navigate to login page', async function () {
     await page.goto(url)
     const getRegister = page.getByText("Login here");

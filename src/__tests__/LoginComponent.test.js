@@ -16,7 +16,6 @@ jest.mock("react-redux", () => ({
 
 
 describe("Login test cases", () => {
-
     beforeEach(() => {
         useSelector.mockImplementation(callback => {
             return callback({
@@ -29,16 +28,13 @@ describe("Login test cases", () => {
             })
         })
     })
-    test(" test for validation of password input", async () => {
+    test("test case for validation of password and email input", async () => {
         const { getByTestId } = render(<Provider store={store}>
             <BrowserRouter>
                 <LoginComponent />
             </BrowserRouter>
         </Provider>)
-
-
         await act(async () => {
-
             fireEvent.change(getByTestId("email-input"), { target: { value: "tej@gmail" } })
             fireEvent.change(getByTestId("password-test"), { target: { value: "Tej@123@" } })
 
@@ -54,8 +50,8 @@ describe("Login test cases", () => {
 
 })
 
-describe("test for valid credentials", () => {
 
+describe("Test cases for valid credentials", () => {
     beforeEach(() => {
         useSelector.mockImplementation(callback => {
             return callback({
@@ -68,14 +64,15 @@ describe("test for valid credentials", () => {
             })
         })
     })
-    test(" test for validation of password input", async () => {
 
+
+    test("test for validation of password input", async () => {
         const { getByTestId } = render(<Provider store={store}>
             <BrowserRouter>
                 <LoginComponent />
             </BrowserRouter>
         </Provider>)
-        
+
         await act(async () => {
             fireEvent.change(getByTestId("email-input"), { target: { value: "tej@gmail" } })
             fireEvent.change(getByTestId("password-test"), { target: { value: "Tej@123@" } })
@@ -91,8 +88,9 @@ describe("test for valid credentials", () => {
 
 })
 
-describe("new user", () => {
 
+
+describe("Registered user validations", () => {
     beforeEach(() => {
         useSelector.mockImplementation(callback => {
             return callback({
@@ -104,11 +102,8 @@ describe("new user", () => {
             })
         })
     })
+
     test(" test for validation of password input", async () => {
-
-
-
-
         const { getByTestId } = render(<Provider store={store}>
             <BrowserRouter>
                 <LoginComponent />
@@ -131,8 +126,9 @@ describe("new user", () => {
     )
 
 })
-test(" test for error validation of password input", async () => {
 
+
+test(" test for error validation of password input", async () => {
     render(<Provider store={store}>
         <BrowserRouter>
             <LoginComponent />

@@ -7,9 +7,11 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.2.3",
     "heroku": "^7.65.0",
     "playwright": "^1.27.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.38.0",
     "react-icons": "^4.6.0",
@@ -31,7 +33,7 @@
     "eject": "react-scripts eject",
     "compile": "npm run build && cd build && jar -cvf web.war .",
     "login": "heroku login",
-    "test:e2e": "cucumber-js --require cucumber.conf.js --require tests/acceptance/stepDefinitions/**/*.js --format @cucumber/pretty-formatter tests/acceptance/features/*.feature"
+    "test:e2e": "cucumber-js --require cucumber.conf.js --require tests/acceptance/stepDefinitions/**/*.js --format @cucumber/pretty-formatter tests/acceptance/features/*.feature --format html:tests/cucumber_report.html"
   },
   "eslintConfig": {},
   "engines": {
@@ -42,8 +44,8 @@
     "coveragePathIgnorePatterns": [
       "<rootDir>/src/redux/",
       "<rootDir>/src/reportWebVitals.js",
-      "<rootDir>/src/index.js",
-      "<rootDir>/src/components/UpdateComponent.js"
+      "<rootDir>/src/index.js"
+  
     ]
   },
   "browserslist": {

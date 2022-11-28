@@ -8,7 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 afterEach(cleanup)
 
 
-test(" testcase for logout ", async () => {
+test("testcase for logout link ", async () => {
   const mockfun = jest.fn()
   const { getByTestId, getByRole } = render(<Provider store={store}><BrowserRouter><HeaderComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
 
@@ -20,7 +20,7 @@ test(" testcase for logout ", async () => {
 })
 
 
-test(" testcase for apply loan ", async () => {
+test("testcase for apply loan link", async () => {
     const mockfun = jest.fn()
     const { getByTestId, getByRole } = render(<Provider store={store}><BrowserRouter><HeaderComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
   
@@ -30,7 +30,7 @@ test(" testcase for apply loan ", async () => {
     expect(getByTestId("apply-loan")).toBeInTheDocument();
   
   })
-  test(" testcase for update ", async () => {
+  test("testcase for update link", async () => {
     const mockfun = jest.fn()
     const { getByTestId, getByRole } = render(<Provider store={store}><BrowserRouter><HeaderComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
   
@@ -41,7 +41,7 @@ test(" testcase for apply loan ", async () => {
   
   })
 
-  test(" testcase for loan details ", async () => {
+  test("testcase for loan details link ", async () => {
     const mockfun = jest.fn()
     const { getByTestId, getByRole } = render(<Provider store={store}><BrowserRouter><HeaderComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
   

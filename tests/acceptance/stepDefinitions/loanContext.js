@@ -5,19 +5,15 @@ const { expect } = require("@playwright/test")
 
 const url = 'http://localhost:3000/loan-application/loanApp'
 
-// Scenario: valid inputs
+//User should be able to apply loan with valid inputs
 Given('a user has navigated to the Loan page', async function () {
    await page.goto(url)
 
-   const accountnumber = page.getByTestId("account-number");
-   const accountType = page.getByTestId("AccType-test1");
    const incomeInput = page.getByTestId("income-test");
    const loanAmountInput = page.getByTestId("loan-amount");
    const durationInput = page.getByTestId("duration-test");
    const purposeInput = page.getByTestId("purpose-test");
 
-   expect(accountnumber).toBeVisible();
-   expect(accountType).toBeVisible()
    expect(incomeInput).toBeVisible()
    expect(loanAmountInput).toBeVisible()
    expect(durationInput).toBeVisible()
@@ -26,8 +22,6 @@ Given('a user has navigated to the Loan page', async function () {
 })
 
 When('the user provides valid values and clicks on apply',async function () {
-   await  page.getByTestId("account-number").fill("1111-1111-1111");
-   await page.getByTestId("AccType-test1").check();
    await page.getByTestId("income-test").fill("2000");
    await page.getByTestId("loan-amount").fill("5000");
    await page.getByTestId("duration-test").selectOption("10");
@@ -36,25 +30,25 @@ When('the user provides valid values and clicks on apply',async function () {
    await applyLoanInput.click();
 })
 
-Then('user should be directed to Loan details page',async function () {
-   await expect(page).toHaveURL(/loandetails/);
+Then('error message {string} should be shown to user',async function (item) {
+   expect(item).toBeVisible()
 })
 
 
 
-//  Scenario: invalid inputs
+//  User should not be able to apply loan with invalid inputs
 Given('a user has navigated to the Loan page but entered incorrect values', async function () {
    await page.goto(url)
-   const accountnumber = page.getByTestId("account-number");
-   expect(accountnumber).toBeVisible()
+   
 })
 
-When('the user provides invalid value for account number and clicks on apply',async function () {
-   await page.getByTestId("account-number").fill("2222222222");
+When('the user provides invalid values and clicks on apply',async function () {
+
    const applyLoanInput = page.getByTestId("btn-loan");
    await applyLoanInput.click();
 })
 
-Then('message {string} should be displayed on the Loan page',async function (item) {
-   expect(item).toBeVisible()
+Then('message {string} {string} should be displayed on the Loan page',async function (item,item1) {
+   expect(item).toBeVisible();
+   expect(item1).toBeVisible()
 })

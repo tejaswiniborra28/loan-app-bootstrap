@@ -1,75 +1,147 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, updateCurrentUser } from "../redux/userActions";
 
-
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Row from 'react-bootstrap/Row';
+import Alert from 'react-bootstrap/Alert';
+import Card from 'react-bootstrap/Card';
 
 const LoginComponent = () => {
-    const registeredUsers = useSelector((state) => state.registeredUsers);
-    const validated = useSelector((state) => state.validated);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { register, handleSubmit, watch, formState: { errors }, getValues } = useForm()
-    const onSubmit = data => {
+  const registeredUsers = useSelector((state) => state.registeredUsers);
+  const validated = useSelector((state) => state.validated);
+  const users =useSelector((state)=>state.users)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { register, handleSubmit, watch, formState: { errors }, getValues, control } = useForm({
+    email: "",
+    password: ""
+  });
 
-        dispatch(login(data))
+  const onSubmit = data => {
 
-    };
-    useEffect(() => {
-
-        if (validated) {
-            dispatch(updateCurrentUser(getValues().email));
-            navigate("/loanApp")
-        }
-    }, [validated])
-
-    return (
-        <section>
-            <div className="register">
-                <div className="col-1">
-                    <h2>Login</h2>
-                    <form id='loginform' className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
-
-                      <div className='login-input'>
-                        <input data-testid="email-input" name="email" {...register("email", {
-                            pattern: { value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i, message: "*please provide correct email id" }, required: true, validate: (value) => {
-
-                                return registeredUsers.includes(value);
-                            }
-                        })} placeholder='Email Address' />
-                        <p className='error-para'>
-                            <span className='error'>{errors.email?.type === "required" && "*Email is required"}</span>
-
-                            <span className='error'>{errors.email?.message} </span></p>
-                 
-                            </div>
-                            <div className='login-input'>
-                        <input type="password" data-testid="password-test" {...register("password", {
-                            required: true, pattern: {
-                                value: /^([A-Z])(?=(.*[A-Z]){1,})(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{5,8}$/i,
-                                message: "length min 5 and max 8,start with capital letter, one or more small letters, number and special characters"
-                            }
-                        })} placeholder='password' />
-                        <p className='error-para'>
-                        <span className='error'>{errors.password?.type === "required" && "*password is required"}</span>
-                        <span className='error'>{errors.password?.message} </span>
-                        </p>
-                        </div>
-             
-                        <button className='btn' data-testid="btn">Login</button>
-                        <div className='error'>{errors.email?.type === "validate" && "*if you are new user. Please register"}</div>
+    //console.log(data)
+    dispatch(login(data));
+ 
+   
+  };
 
 
-                         <div className="register-here"><Link to="/register">Register here</Link></div> 
 
-                    </form>
-                </div>
-            </div>
+  useEffect(() => {
+    if (validated) {
 
-        </section >
-    )
+  
+      dispatch(updateCurrentUser(getValues().email));
+      navigate("/loanApp")
+   
+    }
+  }, [validated])
+
+
+
+
+  return (<>
+    <div className="form-style"> 
+      {errors.email?.type === "validate" && (
+      <Alert variant='danger'>
+        *if you are new user. Please register
+      </Alert>
+       )}
+   <Card className='border-css'>
+      <Card.Header className="text-center" as="h5">LogIn</Card.Header>
+      <Card.Body>
+      <Form noValidate onSubmit={handleSubmit(onSubmit)} >
+      {/* <Row className="mb-3"> */}
+        <Form.Group  as={Row} className="mb-3" controlId="formGroupEmail">
+          <Form.Label  column sm={4}>Email</Form.Label>
+          <Col sm={12}>
+          <Controller
+            rules={{
+              required: true, pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i, validate: (value) => {
+
+                return registeredUsers.includes(value);
+              }
+            }}
+            name="email"
+            control={control}
+            render={({ field }) => (<Form.Control
+          
+              isInvalid={errors.email}
+              data-testid="email-input"
+              type="text"
+              {...field}
+              placeholder="Enter Email Address"
+
+            />)}
+          />
+        
+          {errors.email?.type === "required" && (
+            <Form.Control.Feedback type="invalid">
+              *Email is required
+            </Form.Control.Feedback>)
+          }
+          {errors.email?.type === "pattern" && (
+            <Form.Control.Feedback type="invalid">
+              *please provide correct email id
+            </Form.Control.Feedback>
+          )}
+            </Col>
+        </Form.Group>
+      {/* </Row> */}
+{/* 
+      <Row className="mb-3"> */}
+        <Form.Group as={Row} className="mb-3" controlId="formGroupPassword">
+          <Form.Label  column sm={4}>Password</Form.Label>
+          <Col sm={12}>
+          <Controller
+            rules={{
+              required: true, pattern: /^([A-Z])(?=(.*[A-Z]){1,})(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{5,8}$/i
+            }}
+            name="password"
+            control={control}
+            render={({ field }) => (<Form.Control 
+              isInvalid={errors.password}
+              data-testid="password-test"
+              type="password"
+              {...field}
+              placeholder="Enter password"
+
+            />)}
+          />
+         
+          {errors.password?.type === "required" && (
+            <Form.Control.Feedback type="invalid">
+              *password is required
+            </Form.Control.Feedback>)
+          }
+          {errors.password?.type === "pattern" && (
+            <Form.Control.Feedback type="invalid">
+              *Please provide a valid password
+            </Form.Control.Feedback>
+          )}
+           </Col>
+        </Form.Group>
+      {/* </Row> */}
+
+     <Row>
+      <Button type="submit" data-testid="btn">Login</Button>
+      </Row>
+     {/* <div className="register-here"><Link to="/register">Register here</Link></div> */}
+
+      <Link className="text-center mt-4 mb-2" to="/register">Register here</Link>
+    
+    </Form>
+    </Card.Body>
+    </Card>
+    </div>
+  </>)
+
 }
 
 export default LoginComponent;

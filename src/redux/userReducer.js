@@ -39,7 +39,7 @@ const UserReducer = (state = initialState, action) => {
            case UPDATE: return {
                 ...state,
                      users:state.users.map((item) => (
-                        item.email===state.currentUser? {...item, password: action.payload.password, confirmpwd:action.payload.password}: item
+                        item.email===state.currentUser? {...item, AccountDetails: action.payload}: item
                     ))}
        
 

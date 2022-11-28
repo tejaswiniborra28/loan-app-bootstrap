@@ -9,12 +9,11 @@ import { useSelector } from 'react-redux';
 afterEach(cleanup)
 
 
-test(" test for validation of valid input values for loan", async () => {
+test("test case for validating input values for loan", async () => {
 
   const mockfun = jest.fn()
   const { getByTestId, getByRole } = render(<Provider store={store}><BrowserRouter><LoanComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
   await act(async () => {
-    fireEvent.change(getByTestId("account-number"), { target: { value: "2222-1111-2222" } });
     fireEvent.change(getByTestId("income-test"), { target: { value: 20 } })
     fireEvent.change(getByTestId("loan-amount"), { target: { value: 50 } })
     fireEvent.change(getByTestId("duration-test"), { target: { value: "5" } })
@@ -24,7 +23,6 @@ test(" test for validation of valid input values for loan", async () => {
   await act(async () => {
     fireEvent.click(getByTestId("btn-loan"));
   })
-   expect(getByTestId("account-number")).toBeInTheDocument();
    expect(getByTestId("income-test")).toBeInTheDocument();
    expect(getByTestId("loan-amount")).toBeInTheDocument();
    expect(getByTestId("duration-test")).toBeInTheDocument();
@@ -32,50 +30,29 @@ test(" test for validation of valid input values for loan", async () => {
 
 })
 
-test(" test for error  input values for loan", async () => {
-
+test("test case for validating error input values", async () => {
   const mockfun = jest.fn()
   const { getByTestId, getByRole } = render(<Provider store={store}><BrowserRouter><LoanComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
   
   await act(async () => {
     fireEvent.click(getByTestId("btn-loan"));
   })
-  // expect(mockfun).toHaveBeenCalled();
-
 })
 
 
-test(" test for error validation of input values for loan", async () => {
+test("test for error validation of input value home loan", async () => {
 
   const mockfun = jest.fn()
   const { getByTestId, getByRole } = render(<Provider store={store}><BrowserRouter><LoanComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
   await act(async () => {
-    fireEvent.change(getByTestId("account-number"), { target: { value: "" } });
-    fireEvent.change(getByTestId("income-test"), { target: { value: 20 } })
-    fireEvent.change(getByTestId("loan-amount"), { target: { value: 90 } })
+    fireEvent.change(getByTestId("income-test"), { target: { value: "" } })
+    fireEvent.change(getByTestId("loan-amount"), { target: { value: ""} })
     fireEvent.change(getByTestId("purpose-test"), { target: { value: "Home Loan" } })
 
   })
   await act(async () => {
     fireEvent.click(getByTestId("btn-loan"));
   })
-  // expect(mockfun).toHaveBeenCalled();
-
-
-
-})
-
-
-test(" test for error validation of input values for loan", async () => {
-
-  const mockfun = jest.fn()
-  const { getByTestId, getByRole } = render(<Provider store={store}><BrowserRouter><LoanComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
-
-  await act(async () => {
-    fireEvent.click(getByTestId("btn-loan"));
-  })
-  // expect(mockfun).toHaveBeenCalled();
-
 })
 
 
@@ -87,7 +64,7 @@ jest.mock("react-redux", () => ({
 
 
 
-describe("loan Component", () => {
+describe("Test suite to render loan component when account details are available", () => {
 
   beforeEach(() => {
     useSelector.mockImplementation(callback => {
@@ -96,10 +73,14 @@ describe("loan Component", () => {
         users: [{
           email: "tej@gmail.com",
           password: "Tej@123@",
+          AccountDetails:{
+            accountNumber: "2222-3333-5555",
+            Acctype: "Savings",
+            cardType:"icici"
+          },
           loanDetails: {
             applicationDate: new Date(),
-            accountNumber: "2222-3333-5555",
-            AccType: "Savings",
+           
             loanAmount: 50,
             purpose: "Home Loan",
             duration: 5,
@@ -114,8 +95,6 @@ describe("loan Component", () => {
   test(" test for current user", async () => {
     const mockfun = jest.fn()
     const { getByTestId, getByRole } = render(<Provider store={store}><BrowserRouter><LoanComponent onSubmit={mockfun} /></BrowserRouter></Provider>);
-  
-
 
   }
   )

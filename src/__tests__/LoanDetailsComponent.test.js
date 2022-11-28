@@ -29,10 +29,15 @@ describe("render loan details Component for valid input values", () => {
                     password: "Tej@123@",
                     mobile: +919873456782,
                     pan: "ccccc4567r",
+                    AccountDetails:{
+                        accountNumber: "2222-3333-5555",
+                        Acctype: "Savings",
+                        cardType: "icici"
+                        
+                    },
                     loanDetails: {
                         applicationDate: new Date(),
-                        accountNumber: "2222-3333-5555",
-                        AccType: "Savings",
+                    
                         loanAmount: 50,
                         purpose: "Others",
                         duration: 5,
@@ -106,10 +111,15 @@ describe("render loan details Component for purpose car", () => {
                     password: "Tej@123@",
                     mobile: +919873456782,
                     pan: "ccccc4567r",
+                    AccountDetails:{
+                        accountNumber: "2222-3333-5555",
+                        Acctype: "Savings",
+                        cardType: "icici"
+                        
+                    },
                     loanDetails: {
                         applicationDate: new Date(),
-                        accountNumber: "2222-3333-5555",
-                        AccType: "Savings",
+                    
                         loanAmount: 50,
                         purpose: "Car Loan",
                         duration: 5,
@@ -148,10 +158,15 @@ describe("render loan details Component for purpose home", () => {
                     password: "Tej@123@",
                     mobile: +919873456782,
                     pan: "ccccc4567r",
+                    AccountDetails:{
+                        accountNumber: "2222-3333-5555",
+                        Acctype: "Savings",
+                        cardType: "icici"
+                        
+                    },
                     loanDetails: {
                         applicationDate: new Date(),
-                        accountNumber: "2222-3333-5555",
-                        AccType: "Savings",
+                       
                         loanAmount: 50,
                         purpose: "Home Loan",
                         duration: 5,
