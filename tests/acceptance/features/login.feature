@@ -12,9 +12,9 @@ Feature: Login
   Scenario Outline: User should not be able to login when provides invalid inputs
     Given a user has navigated to the Login page
     When the user provides invalid password and clicks on login
-    Then message "*Please provide a valid password" should be displayed on the Login page
+    Then message "*Invalid Credentials" should be displayed on the Login page
 
   Scenario Outline: User clicking on Register Link
-    Given a user has navigated to the Login page
+    Given a user has navigated to the Login page to navigate to register page
     When the user clicks on Register link
     Then user should be directed to register page

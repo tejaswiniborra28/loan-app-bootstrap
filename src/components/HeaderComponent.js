@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { logout } from "../redux/userActions";
 
 import Container from 'react-bootstrap/Container';
@@ -8,6 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 export default function Header() {
+  const userEmail = useSelector((state) => state.currentUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const logoutFunc = (e) => {
@@ -19,7 +20,7 @@ export default function Header() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand>Loan Application</Navbar.Brand>
+        <Navbar.Brand>LOAN APPLICATION</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -30,7 +31,7 @@ export default function Header() {
           <Nav>
             <Nav.Link data-testid="update"><Link className="link-style" to="/update">Update</Link></Nav.Link>
             <Nav.Link eventKey={2} data-testid="sign-out">
-              <Link className="link-style" onClick={logoutFunc}>Sign out</Link>
+              <Link className="link-style" onClick={logoutFunc}>{userEmail ? "Sign out" : "Sign In"}</Link>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

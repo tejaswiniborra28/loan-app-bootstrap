@@ -9,6 +9,7 @@ import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 
 const LoanDetailsComponent = () => {
+    const loggedIn = useSelector((state) => state.currentUser);
     const loandetails = useSelector((state) => state.users.filter((e) => e.email === state.currentUser))[0];
     let loanpurpose = null;
     let rateOfInterest = null;
@@ -23,137 +24,134 @@ const LoanDetailsComponent = () => {
     return (<>
         <HeaderComponent />
         <div className="form-style">
-            {loandetails?.loanDetails ? <>
-<Card className='border-css'>
-    <Card.Body>
-                <Form>
-                    <Row className="mb-3">
-                        <Col>
-                            <Form.Label >
-                                Loan Applied on
-                            </Form.Label>
-                            <Form.Control type="text" defaultValue={loandetails.loanDetails.applicationDate.toLocaleDateString('en-CA')} />
-                        </Col>
-                        <Col>
-                            <Form.Label>
-                                Applied By
-                            </Form.Label>
-                            <Form.Control type="text" defaultValue={loandetails.FirstName + " " + loandetails.LastName} />
+            {loggedIn ? (loandetails?.loanDetails ? <>
+                <Card className='border-css'>
+                    <Card.Header className="text-center" as="h5">Loan Details</Card.Header>
+                    <Card.Body>
+                        <Form>
+                            <Row className="mb-3">
+                                <Col>
+                                    <Form.Label >
+                                        Loan Applied on
+                                    </Form.Label>
+                                    <Form.Control type="text" defaultValue={loandetails.loanDetails.applicationDate?.toLocaleDateString('en-CA')} />
+                                </Col>
+                                <Col>
+                                    <Form.Label>
+                                        Applied By
+                                    </Form.Label>
+                                    <Form.Control type="text" defaultValue={loandetails.FirstName + " " + loandetails.LastName} />
 
-                        </Col>
-                        <Col>
-                            <Form.Label >
-                                Email
-                            </Form.Label>
+                                </Col>
+                                <Col>
+                                    <Form.Label >
+                                        Email
+                                    </Form.Label>
 
-                            <Form.Control type="text" defaultValue={loandetails.email} />
+                                    <Form.Control type="text" defaultValue={loandetails.email} />
 
-                        </Col>
-                        <Col>
-                            <Form.Label >
-                                Contact
-                            </Form.Label>
+                                </Col>
+                                <Col>
+                                    <Form.Label >
+                                        Contact
+                                    </Form.Label>
 
-                            <Form.Control defaultValue={loandetails.mobile} />
+                                    <Form.Control defaultValue={loandetails.mobile} />
 
-                        </Col>
+                                </Col>
 
-                    </Row>
+                            </Row>
 
-                    <Row className="mb-3">
-                        <Col>
-                            <Form.Label >
-                                PAN Number
-                            </Form.Label>
+                            <Row className="mb-3">
+                                <Col>
+                                    <Form.Label >
+                                        PAN Number
+                                    </Form.Label>
 
-                            <Form.Control type="text" defaultValue={loandetails.pan} />
+                                    <Form.Control type="text" defaultValue={loandetails.pan} />
 
-                        </Col>
-                        <Col>
-                            <Form.Label>
-                                Account Number
-                            </Form.Label>
+                                </Col>
+                                <Col>
+                                    <Form.Label>
+                                        Account Number
+                                    </Form.Label>
 
-                            <Form.Control type="text" defaultValue={loandetails.AccountDetails.accountNumber} />
+                                    <Form.Control type="text" defaultValue={loandetails.AccountDetails.accountNumber} />
 
-                        </Col>
-                        <Col>
-                            <Form.Label>
-                                Account Type
-                            </Form.Label>
+                                </Col>
+                                <Col>
+                                    <Form.Label>
+                                        Account Type
+                                    </Form.Label>
 
-                            <Form.Control type="text" defaultValue={loandetails.AccountDetails.Acctype} />
+                                    <Form.Control type="text" defaultValue={loandetails.AccountDetails.Acctype} />
 
-                        </Col>
-                        <Col>
-                            <Form.Label >
-                                Card Type
-                            </Form.Label>
+                                </Col>
+                                <Col>
+                                    <Form.Label >
+                                        Card Type
+                                    </Form.Label>
 
-                            <Form.Control type="text" defaultValue={loandetails.AccountDetails.cardType} />
+                                    <Form.Control type="text" defaultValue={loandetails.AccountDetails.cardType} />
 
-                        </Col>
-                    </Row>
+                                </Col>
+                            </Row>
 
-                    <Row className="mb-3">
-                        <Col>
-                            <Form.Label>
-                                Loan Amount
-                            </Form.Label>
+                            <Row className="mb-3">
+                                <Col>
+                                    <Form.Label>
+                                        Loan Amount
+                                    </Form.Label>
 
-                            <Form.Control defaultValue={loandetails.loanDetails.loanAmount * 100000} />
+                                    <Form.Control defaultValue={loandetails.loanDetails.loanAmount * 100000} />
 
-                        </Col>
-                        <Col>
-                            <Form.Label >
-                                Loan Purpose
-                            </Form.Label>
+                                </Col>
+                                <Col>
+                                    <Form.Label >
+                                        Loan Purpose
+                                    </Form.Label>
 
-                            <Form.Control type="text" defaultValue={loandetails.loanDetails.purpose} />
+                                    <Form.Control type="text" defaultValue={loandetails.loanDetails.purpose} />
 
-                        </Col>
-                        <Col>
-                            <Form.Label >
-                                Loan Duration
-                            </Form.Label>
+                                </Col>
+                                <Col>
+                                    <Form.Label >
+                                        Loan Duration
+                                    </Form.Label>
 
-                            <Form.Control type="text" defaultValue={loandetails.loanDetails.duration + " years"} />
+                                    <Form.Control type="text" defaultValue={loandetails.loanDetails.duration + " years"} />
 
-                        </Col>
+                                </Col>
 
-                        {loandetails.loanDetails.description && <Col>
-                            <Form.Label >
-                                Loan Purpose in Detail
-                            </Form.Label>
+                                {loandetails.loanDetails.description && <Col>
+                                    <Form.Label >
+                                        Loan Purpose in Detail
+                                    </Form.Label>
 
-                            <Form.Control type="text" defaultValue={loandetails.loanDetails.description} />
+                                    <Form.Control type="text" defaultValue={loandetails.loanDetails.description} />
 
-                        </Col>}
+                                </Col>}
 
-                        <Col>
-                            <Form.Label>
-                                Rate Of Interest
-                            </Form.Label>
+                                <Col>
+                                    <Form.Label>
+                                        Rate Of Interest
+                                    </Form.Label>
 
-                            <Form.Control type="text" defaultValue={rateOfInterest} />
+                                    <Form.Control type="text" defaultValue={rateOfInterest} />
 
-                        </Col>
+                                </Col>
 
-                    </Row>
+                            </Row>
 
-
-
-
-
-
-
-
-
-                </Form>
-                </Card.Body></Card>
+                        </Form>
+                    </Card.Body></Card>
             </> : <Alert variant="danger">
-                Loan details are not available
-            </Alert>}
+                you have not applied for any loan
+            </Alert>
+            ) : <Alert variant="danger">
+                 *Please login to access your account
+            </Alert>
+            }
         </div>
     </>)
 }

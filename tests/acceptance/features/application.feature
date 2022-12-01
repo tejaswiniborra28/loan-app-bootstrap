@@ -9,4 +9,5 @@ Feature: Application success flow
     Then user provides valid credentials and clicks on login
     Then user updates account details 
     Then user provides loan details and clicks on apply
-    Then should be able to see loandetails page with all provided details
+    Then should be able to see message "Loan Submitted Successfully"
+    Then applied loan details "gk@gmail.com" "1111-1111-1111"  will be shown to user in loandetails page

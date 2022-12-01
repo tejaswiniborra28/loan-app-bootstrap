@@ -28,7 +28,7 @@ const UserReducer = (state = initialState, action) => {
           case APPLYLOAN: return {
             ...state,
              users:state.users.map((item) => (
-                item.email===state.currentUser? {...item, loanDetails: {...action.payload,applicationDate:new Date()}}: item
+                item.email===state.currentUser? {...item, loanDetails:{...action.payload,applicationDate:new Date()}}: item
             ))}
             case LOGOUT:
                 return {

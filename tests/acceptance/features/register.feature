@@ -12,7 +12,7 @@ Feature: Register
   Scenario Outline: User should not be able to register with invalid inputs
     Given a user has navigated to the Registration page to register
     When the user provides invalid details and clicks on register
-    Then error message "*please provide correct PAN Number" should be displayed on the register page
+    Then error message "*please provide correct PAN Number" "*please provide correct contact number" should be displayed on the register page
 
   Scenario Outline: User clicking on login Link
     Given a user has navigated to the Register page to navigate to login page

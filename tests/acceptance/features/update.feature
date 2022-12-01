@@ -12,5 +12,5 @@ Feature: update
 
   Scenario Outline: User should not be able to update with invalid values
     Given a user on update page
-    When the user provides invalid  Account details and clicks on update without logging in
+    When the user provides invalid  Account details and clicks on update after logging in
     Then error message "*please provide your 12 digit account number" should be displayed on the update page

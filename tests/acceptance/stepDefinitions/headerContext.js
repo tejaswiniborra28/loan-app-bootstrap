@@ -60,12 +60,12 @@ Then('user should be directed to Loan details component',async function () {
 //  User clicking on logout button
 Given('a user has navigated to the Header to logout', async function () {
    await page.goto(url);
-   const signOutButton = page.getByText("Sign out");
+   const signOutButton = page.getByText("Sign In");
    expect(signOutButton).toBeVisible()
 })
 
 When('the user clicks on logout button',async function () {
-   const signOutButton = page.getByText("Sign out");
+   const signOutButton = page.getByText("Sign In");
    await signOutButton.click();
 })
 

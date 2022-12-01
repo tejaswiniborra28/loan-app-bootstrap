@@ -59,12 +59,14 @@ Given('a user has navigated to the Registration page to register', async functio
  
  When('the user provides invalid details and clicks on register',async function () {
     await page.getByTestId("reg-pan").fill("23vdg");
+    await page.getByTestId("mobileno").fill("+9122222222");
     const registerButton = page.getByTestId("btn-register");
     await registerButton.click();
  })
  
- Then('error message {string} should be displayed on the register page',async function (item) {
-    expect(item).toBeVisible()
+ Then('error message {string} {string} should be displayed on the register page',async function (item,item1) {
+    expect(item).toBeVisible();
+    expect(item1).toBeVisible()
  })
 
 

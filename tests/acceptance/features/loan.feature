@@ -4,12 +4,13 @@ Feature: Loan
   I want to provide loan details
   So that i can apply for Loan  
  
+  Scenario Outline: User should not be access loan form without logging in
+    Given a user has navigated to the Loan page without logging In
+    When user tries to access header
+    Then error "Please login to access your account" should be shown to the user instead of loan form
+
   Scenario Outline: User should be able to apply loan with valid inputs
     Given a user has navigated to the Loan page
-    When the user provides valid values and clicks on apply
+    When the user provides valid values to register , login and access loan form
     Then error message " *Please update Account details before applying for Loan" should be shown to user 
   
-  Scenario Outline:  User should not be able to apply loan with invalid inputs
-    Given a user has navigated to the Loan page but entered incorrect values
-    When the user provides invalid values and clicks on apply
-    Then message "*Income earned is required" "*Loan amount is required" should be displayed on the Loan page

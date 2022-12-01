@@ -49,8 +49,6 @@ const RegisterComponent = () => {
      confirmpwd: "",
      pan:""});
     setSubmitRegister(true);
-
-
   }
 
 
@@ -392,10 +390,11 @@ const RegisterComponent = () => {
         </Form.Group>
       </Row>
 
-
-      <Button type="submit" data-testid="btn-register">Register</Button>
+    <div className="d-flex justify-content-between">
+     <Button type="submit" data-testid="btn-register">Register</Button>
       {/* <div className="register-here"> <Link to="/login">Login here</Link></div> */}
-     <Link to="/login">Login here</Link>
+      <Link className='align-self-end' to="/login">Login here</Link>
+     </div>
     </Form>
     </Card.Body>
     </Card>

@@ -29,15 +29,15 @@ describe("render loan details Component for valid input values", () => {
                     password: "Tej@123@",
                     mobile: +919873456782,
                     pan: "ccccc4567r",
-                    AccountDetails:{
+                    AccountDetails: {
                         accountNumber: "2222-3333-5555",
                         Acctype: "Savings",
                         cardType: "icici"
-                        
+
                     },
                     loanDetails: {
                         applicationDate: new Date(),
-                    
+
                         loanAmount: 50,
                         purpose: "Others",
                         duration: 5,
@@ -111,15 +111,15 @@ describe("render loan details Component for purpose car", () => {
                     password: "Tej@123@",
                     mobile: +919873456782,
                     pan: "ccccc4567r",
-                    AccountDetails:{
+                    AccountDetails: {
                         accountNumber: "2222-3333-5555",
                         Acctype: "Savings",
                         cardType: "icici"
-                        
+
                     },
                     loanDetails: {
                         applicationDate: new Date(),
-                    
+
                         loanAmount: 50,
                         purpose: "Car Loan",
                         duration: 5,
@@ -158,15 +158,15 @@ describe("render loan details Component for purpose home", () => {
                     password: "Tej@123@",
                     mobile: +919873456782,
                     pan: "ccccc4567r",
-                    AccountDetails:{
+                    AccountDetails: {
                         accountNumber: "2222-3333-5555",
                         Acctype: "Savings",
                         cardType: "icici"
-                        
+
                     },
                     loanDetails: {
                         applicationDate: new Date(),
-                       
+
                         loanAmount: 50,
                         purpose: "Home Loan",
                         duration: 5,
@@ -192,3 +192,49 @@ describe("render loan details Component for purpose home", () => {
 })
 
 
+describe("render loan details Component when user not logged In", () => {
+    beforeEach(() => {
+        useSelector.mockImplementation(callback => {
+            return callback({
+                registeredUsers: ["tej@gmail.com"],
+                currentUser: "",
+                users: [{
+                    FirstName: "jdjfjds",
+                    LastName: "dgdfg",
+
+                    email: "tej@gmail.com",
+                    password: "Tej@123@",
+                    mobile: +919873456782,
+                    pan: "ccccc4567r",
+                    AccountDetails: {
+                        accountNumber: "2222-3333-5555",
+                        Acctype: "Savings",
+                        cardType: "icici"
+
+                    },
+                    loanDetails: {
+                        applicationDate: new Date(),
+
+                        loanAmount: 50,
+                        purpose: "Home Loan",
+                        duration: 5,
+                        rateOfInterest: 10,
+                    }
+
+                }],
+                validated: true
+            })
+        })
+    })
+    test("render loanDetails component", async () => {
+
+        const { getByTestId } = render(<Provider store={store}>
+            <BrowserRouter>
+                <LoanDetailsComponent />
+            </BrowserRouter>
+        </Provider>)
+    }
+
+    )
+
+})

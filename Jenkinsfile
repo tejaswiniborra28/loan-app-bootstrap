@@ -6,7 +6,7 @@ pipeline {
 
      }
     stages {
-        stage('Build') {
+        stage('Install') {
             steps {
                 bat 'npm install'
             }
@@ -21,7 +21,7 @@ pipeline {
                 //         bat 'npx run test:e2e'
                 //     }
                 // }
-                    stage('Deliver') {
+                    stage('Build') {
                                 steps {
                                     bat 'npm run compile'
                                 

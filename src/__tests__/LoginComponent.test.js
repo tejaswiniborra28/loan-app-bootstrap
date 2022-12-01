@@ -35,7 +35,7 @@ describe("Login test cases", () => {
             </BrowserRouter>
         </Provider>)
         await act(async () => {
-            fireEvent.change(getByTestId("email-input"), { target: { value: "tej@gmail" } })
+            fireEvent.change(getByTestId("email-input"), { target: { value: "tej@gmail.com" } })
             fireEvent.change(getByTestId("password-test"), { target: { value: "Tej@123@" } })
 
         })
@@ -43,7 +43,10 @@ describe("Login test cases", () => {
         expect(getByTestId("email-input")).toBeInTheDocument();
         expect(getByTestId("password-test")).toBeInTheDocument();
         await act(async () =>
-            fireEvent.click(btnIncrement))
+            fireEvent.click(btnIncrement,{
+                email: "tej@gmail.com",
+                password: "Tej@123@"
+              }))
     }
 
     )

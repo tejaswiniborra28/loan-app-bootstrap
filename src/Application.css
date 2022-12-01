@@ -1,40 +1,41 @@
-.App{
-    height:100vh
+.App {
+    height: 100vh
 }
 
-.form-style{
+.form-style {
     /* background: #55acf3; */
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  flex-direction: column;
-  /* border: 1px solid black ; */
-  /* width:800px */
-
-
- 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    flex-direction: column;
+    /* border: 1px solid black ; */
+    /* width:800px */
 }
 
-.border-css{
+.border-css {
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
-.login-form{
+.login-form {
     /* background: #55acf3; */
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     width: 50%;
-    height:50%;
+    height: 50%;
     /* padding: 1.5em;*/
-    border: 1px solid black 
+    border: 1px solid black
 }
 
-.link-style{
- text-decoration: none;
- color: white
+.link-style {
+    text-decoration: none;
+    color: white
+}
 
+.register-link {
+    width: fit-content;
+    margin: 1rem 0rem 0rem auto;
 }

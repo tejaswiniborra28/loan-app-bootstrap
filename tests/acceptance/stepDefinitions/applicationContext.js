@@ -74,6 +74,14 @@ Then('user provides loan details and clicks on apply', async function () {
     await applyLoanInput.click();
 })
 
-Then('should be able to see loandetails page with all provided details', async function () {
-    await expect(page).toHaveURL(/loandetails/);
+Then('should be able to see message {string}', async function (item) {
+    expect(item).toBeVisible()
+})
+
+Then('applied loan details {string} {string}  will be shown to user in loandetails page', async function (item, item1) {
+    const loandetails = page.getByText("Loan Details");
+   await loandetails.click();
+   expect(item).toBeVisible()
+   expect(item1).toBeVisible()
+
 })
